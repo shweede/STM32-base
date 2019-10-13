@@ -80,7 +80,7 @@ GCC_FLAGS += -D $(MAPPED_DEVICE)
 
 # Flags - Linker Options
 # GCC_FLAGS += -nostdlib
-GCC_FLAGS += -Wl,-L$(BASE_LINKER),-T$(BASE_LINKER)/$(SERIES_FOLDER)/$(DEVICE).ld
+GCC_FLAGS += -Wl,-L$(BASE_LINKER),-L./config,-T$(BASE_LINKER)/$(SERIES_FOLDER)/$(DEVICE).ld
 
 # Flags - Directory Options
 GCC_FLAGS += -I./inc

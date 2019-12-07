@@ -34,17 +34,18 @@ ifdef TOOLCHAIN_PATH
     TOOLCHAIN_SEPARATOR = /
 endif
 
-TOOLCHAIN_PATH      ?= ../../tools/bin/
+TOOLCHAIN_PATH      ?= ../../tools/
 TOOLCHAIN_SEPARATOR ?=
 
-CC      = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)arm-none-eabi-gcc
-CXX     = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)arm-none-eabi-g++
-LD      = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)arm-none-eabi-ld -v
-AR      = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)arm-none-eabi-ar
-AS      = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)arm-none-eabi-gcc
-OBJCOPY = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)arm-none-eabi-objcopy
-OBJDUMP = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)arm-none-eabi-objdump
-SIZE    = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)arm-none-eabi-size
+CC              = arm-none-eabi-gcc
+CXX             = arm-none-eabi-g++
+LD              = arm-none-eabi-ld -v
+AR              = arm-none-eabi-ar
+AS              = arm-none-eabi-gcc
+OBJCOPY         = arm-none-eabi-objcopy
+OBJDUMP         = arm-none-eabi-objdump
+SIZE            = arm-none-eabi-size
+FLASH_TOOL      = $(TOOLCHAIN_PATH)$(TOOLCHAIN_SEPARATOR)st-flash
 
 # Default for flags
 GCC_FLAGS ?=
@@ -154,6 +155,6 @@ clean:
 
 # Make flash
 flash:
-	st-flash write $(BIN_FOLDER)/$(BIN_FILE_NAME) $(FLASH)
+	$(FLASH_TOOL) write $(BIN_FOLDER)/$(BIN_FILE_NAME) $(FLASH)
 
 .PHONY: all clean flash
